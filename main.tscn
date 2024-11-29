@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://d0ue12mo2k57s"]
+
+[ext_resource type="Script" path="res://animation_fix.gd" id="1_40mpa"]
+[ext_resource type="Texture2D" uid="uid://xh2afy78g3iw" path="res://duck.png" id="1_hoo2l"]
+[ext_resource type="FontFile" uid="uid://bffsfydy3a4c2" path="res://PixelOperator8.ttf" id="3_68nng"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n1km"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgyai"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3so2"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebnyu"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhuet"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7y1f"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl13y"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6ymh"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qpy8"]
+atlas = ExtResource("1_hoo2l")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdg73"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n1km")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgyai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3so2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebnyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhuet")
+}],
+"loop": true,
+"name": &"bopping",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7y1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl13y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6ymh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qpy8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhh7w"]
+radius = 8.0
+
+[node name="Duck" type="StaticBody2D"]
+script = ExtResource("1_40mpa")
+
+[node name="AnimationSmoother" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cdg73")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.191279
+
+[node name="Label" type="Label" parent="."]
+offset_left = 9.0
+offset_top = -13.0
+offset_right = 49.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("3_68nng")
+theme_override_font_sizes/font_size = 8
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dhh7w")
+
+[connection signal="timeout" from="AnimationSmoother" to="." method="_on_animation_smoother_timeout"]
