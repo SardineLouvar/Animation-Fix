@@ -3,7 +3,7 @@ The following Godot 4.3 code demonstrates a way to have an animation end when yo
 
 ### The fix works as follows:
 0. Make sure that the timeout() signal from the timer is connected to the "_on_animation_smoother_timeout" function of your script.
-1. To prime the fix, set check = true. For example, when the animation that you want to transition from afterwards is playing.
+1. To prime the fix, check is set to true. For example, when the animation that you want to transition from afterwards is playing.
 2. When certain conditions are met, the fix is started. My conditions are:
 * Check is true,
 * The second to last frame is active,
