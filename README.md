@@ -2,6 +2,7 @@
 The following Godot 4.3 code demonstrates a way to have an animation end when you want rather than instantly, whilst remaining smooth. I made this since snappy animations (for example going from running to idle) feel off in many games, and are often quite distracting. This fix is easy to implement, and works well with state machines as well as simple systems.
 
 ### The fix works as follows:
+0. Make sure that the timeout() signal from the timer is connected to the "_on_animation_smoother_timeout" function of your script.
 1. To prime the fix, set check = true. For example, when the animation that you want to transition from afterwards is playing.
 2. When certain conditions are met, the fix is started. My conditions are:
 * Check is true,
